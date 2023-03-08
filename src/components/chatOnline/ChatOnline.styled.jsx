@@ -7,6 +7,7 @@ export const ChatOnlineFriend = styled.div`
   align-items: center;
   font-weight: 500;
   cursor: pointer;
+  margin-top: 10px;
 `;
 
 export const ChatOnlineImgContainer = styled.div`
