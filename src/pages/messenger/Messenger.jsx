@@ -27,6 +27,7 @@ export const Messenger = () => {
     const getConversations = async () => {
       try {
         const { data } = await axios.get('/conversations/' + user.id);
+        setConversations(data);
       } catch (error) {
         console.log(error);
       }
@@ -40,7 +41,13 @@ export const Messenger = () => {
         <ChatMenu>
           <ChatMenuWrapper>
             <ChatMenuInput type="text" placeholder="Search for friends" />
-            <Conversation />
+            {conversations.map(conversation => (
+              <Conversation
+                key={conversation._id}
+                conversation={conversation}
+                currentUser={user}
+              />
+            ))}
           </ChatMenuWrapper>
         </ChatMenu>
         <ChatBox>
