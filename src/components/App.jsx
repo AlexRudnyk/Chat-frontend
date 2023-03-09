@@ -30,7 +30,7 @@ export const App = () => {
               }
             />
             <Route
-              path="registration"
+              path="signup"
               element={
                 <RestrictedRoute component={RegisterPage} redirectTo="/" />
               }

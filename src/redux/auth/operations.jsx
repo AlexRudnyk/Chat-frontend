@@ -4,13 +4,14 @@ import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'http://localhost:3030/api';
 
-export const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
-  },
+const setAuthHeader = token => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
+// Utility to remove JWT
+
+const clearAuthHeader = () => {
+  axios.defaults.headers.common.Authorization = '';
 };
 
 export const register = createAsyncThunk(
@@ -32,7 +33,7 @@ export const login = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/users/login', credentials);
-      token.set(data.token);
+      setAuthHeader(data.token);
       toast.success('Welcome on board');
       return data;
     } catch (error) {
@@ -45,7 +46,7 @@ export const login = createAsyncThunk(
 export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.get('/users/logout');
-    token.unset();
+    clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -54,14 +55,17 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
-    const { token } = thunkAPI.getState().auth.user;
+    const { token } = thunkAPI.getState().auth;
+    console.log('TOKEN: ', token);
     if (!token) {
       return thunkAPI.rejectWithValue('No valid token');
     }
     try {
-      token.set(token);
-      const res = await axios.get('/users/current');
-      return res.data;
+      setAuthHeader(token);
+      console.log('HEADER: ', axios.defaults.headers.common.Authorization);
+      const { data } = await axios.get('/users/current');
+      console.log('DATA: ', data);
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
