@@ -12,15 +12,30 @@ import {
   ChatBoxInput,
   ChatBoxBtn,
 } from './Messenger.styled';
-import { AppBar } from 'components/appbar';
 import { Conversation } from 'components/conversation';
 import { Message } from 'components/message';
 import { ChatOnline } from 'components/chatOnline';
+import { useState, useEffect } from 'react';
+import { useAuth } from 'hooks/useAuth';
+import axios from 'axios';
 
 export const Messenger = () => {
+  const [conversations, setConversations] = useState([]);
+  const { user } = useAuth();
+
+  useEffect(() => {
+    const getConversations = async () => {
+      try {
+        const { data } = await axios.get('/conversations/' + user.id);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getConversations();
+  }, [user.id]);
+
   return (
     <>
-      <AppBar />
       <MessengerContainer>
         <ChatMenu>
           <ChatMenuWrapper>

@@ -46,6 +46,7 @@ export const login = createAsyncThunk(
 export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.get('/users/logout');
+    toast.info('Good bye, see you next time!');
     clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
@@ -56,15 +57,12 @@ export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
     const { token } = thunkAPI.getState().auth;
-    console.log('TOKEN: ', token);
     if (!token) {
       return thunkAPI.rejectWithValue('No valid token');
     }
     try {
       setAuthHeader(token);
-      console.log('HEADER: ', axios.defaults.headers.common.Authorization);
       const { data } = await axios.get('/users/current');
-      console.log('DATA: ', data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
