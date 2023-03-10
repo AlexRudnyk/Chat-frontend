@@ -23,6 +23,7 @@ export const ChatMenuWrapper = styled.div`
 `;
 
 export const ChatBoxWrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -69,4 +70,12 @@ export const ChatBoxBtn = styled.button`
   cursor: pointer;
   background-color: teal;
   color: white;
+`;
+
+export const NoConversationText = styled.span`
+  position: absolute;
+  top: 10%;
+  font-size: 50px;
+  color: rgb(224, 217, 217);
+  cursor: default;
 `;

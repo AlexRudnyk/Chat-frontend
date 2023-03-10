@@ -16,7 +16,6 @@ export const Conversation = ({ conversation, currentUser }) => {
     const getUser = async () => {
       try {
         const { data } = await axios.get('/users?userId=' + friendId);
-        console.log('DATA: ', data);
         setUser(data);
       } catch (error) {
         console.log(error);

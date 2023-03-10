@@ -6,16 +6,17 @@ import {
   //   MessageTopText,
 } from './Message.styled';
 import './message.css';
+import { format } from 'timeago.js';
 
-export const Message = ({ own }) => {
+export const Message = ({ message, own }) => {
   return (
     <>
       <div className={own ? 'message own' : 'message'}>
         <MessageTop>
           <MessageTopImg src="" alt="" />
-          <p className="messageText">Hello this is a message</p>
+          <p className="messageText">{message.text}</p>
         </MessageTop>
-        <MessageBottom>1 hour ago</MessageBottom>
+        <MessageBottom>{format(message.createdAt)}</MessageBottom>
       </div>
     </>
   );
