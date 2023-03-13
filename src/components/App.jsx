@@ -3,7 +3,7 @@ import { useAuth } from 'hooks/useAuth';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { Messenger } from 'pages/messenger';
+import { Messenger } from '../pages/messenger/Messenger';
 import { Layout } from './layout';
 import { PrivateRoute } from './privateRoute/PrivateRoute';
 import { RestrictedRoute } from './restrictedRoute/RestrictedRoute';

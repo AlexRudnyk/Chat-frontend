@@ -24,20 +24,20 @@ import { io } from 'socket.io-client';
 export const Messenger = () => {
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
+  const [arrivalMessage, setArrivalMessage] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
-  const [arrivalMessage, setArrivalMessage] = useState(null);
 
   const scrollRef = useRef();
   const socket = useRef();
   const { user } = useAuth();
 
   useEffect(() => {
-    socket.current = io('ws://localhost:8900');
-    socket.current.on('getMessage', data => {
+    socket.current = io('ws://localhost:4040');
+    socket.current.on('getMessage', ({ senderId, text }) => {
       setArrivalMessage({
-        sender: data.senderId,
-        text: data.text,
+        sender: senderId,
+        text: text,
         createdAt: Date.now(),
       });
     });
@@ -51,7 +51,7 @@ export const Messenger = () => {
 
   useEffect(() => {
     socket.current.emit('addUser', user.id);
-    socket.current.on('getUsers', users => {});
+    socket.current.on('getUsers', users => users);
   }, [user]);
 
   useEffect(() => {

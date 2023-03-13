@@ -44,6 +44,7 @@ export const RegisterPage = () => {
   const [userPasswordError, setUserPasswordError] = React.useState(false);
 
   const dispatch = useDispatch();
+
   const handleSubmit = event => {
     event.preventDefault();
     setUserNameError(false);
