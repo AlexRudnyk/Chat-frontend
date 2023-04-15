@@ -133,6 +133,10 @@ export const Messenger = () => {
                       <Message
                         message={message}
                         own={message.sender === user.id}
+                        currentUser={user}
+                        friendId={currentChat.members.find(
+                          member => member !== user.id
+                        )}
                       />
                     </div>
                   ))}

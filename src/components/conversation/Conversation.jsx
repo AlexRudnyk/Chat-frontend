@@ -7,7 +7,7 @@ import {
 } from './Conversation.styled';
 
 export const Conversation = ({ conversation, currentUser }) => {
-  const [user, setUser] = useState(null);
+  const [friend, setFriend] = useState(null);
 
   useEffect(() => {
     const friendId = conversation.members.find(
@@ -16,7 +16,7 @@ export const Conversation = ({ conversation, currentUser }) => {
     const getUser = async () => {
       try {
         const { data } = await axios.get('/users?userId=' + friendId);
-        setUser(data);
+        setFriend(data);
       } catch (error) {
         console.log(error);
       }
@@ -26,10 +26,10 @@ export const Conversation = ({ conversation, currentUser }) => {
 
   return (
     <>
-      {user && (
+      {friend && (
         <ConversationContainer>
-          <ConversationImg src={user.avatarURL} alt="avatar" />
-          <ConversationName>{user.username}</ConversationName>
+          <ConversationImg src={friend.avatarURL} alt="avatar" />
+          <ConversationName>{friend.username}</ConversationName>
         </ConversationContainer>
       )}
     </>
