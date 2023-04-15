@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/Chat-frontend/static/css/main.c3ef3d61.css",
-    "main.js": "/Chat-frontend/static/js/main.bb60a2ad.js",
+    "main.js": "/Chat-frontend/static/js/main.16bd6991.js",
     "index.html": "/Chat-frontend/index.html"
   },
   "entrypoints": [
     "static/css/main.c3ef3d61.css",
-    "static/js/main.bb60a2ad.js"
+    "static/js/main.16bd6991.js"
   ]
 }
