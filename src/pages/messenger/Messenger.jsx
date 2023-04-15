@@ -15,11 +15,11 @@ import {
 } from './Messenger.styled';
 import { Conversation } from 'components/conversation';
 import { Message } from 'components/message';
-import { ChatOnline } from 'components/chatOnline';
 import { useState, useEffect, useRef } from 'react';
 import { useAuth } from 'hooks/useAuth';
 import axios from 'axios';
 import { io } from 'socket.io-client';
+import { ChatOnline } from 'components/chatOnline';
 
 export const Messenger = () => {
   const [conversations, setConversations] = useState([]);
@@ -27,6 +27,7 @@ export const Messenger = () => {
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
+  const [friends, setFriends] = useState([]);
 
   const scrollRef = useRef();
   const socket = useRef();
@@ -78,6 +79,19 @@ export const Messenger = () => {
     getMessages();
   }, [currentChat]);
 
+  useEffect(() => {
+    const getAllUsers = async () => {
+      try {
+        const { data } = await axios.get('/users/all');
+        const friends = data.filter(item => item._id !== user.id);
+        setFriends(friends);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getAllUsers();
+  }, [user.id]);
+
   const handleSubmit = async event => {
     event.preventDefault();
     const message = {
@@ -106,6 +120,8 @@ export const Messenger = () => {
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
+
+  // console.log('FRIENDS:', friends);
 
   return (
     <>
@@ -161,7 +177,14 @@ export const Messenger = () => {
         </ChatBox>
         <ChatOnlineContainer>
           <ChatOnlineWrapper>
-            <ChatOnline />
+            {friends.map(friend => (
+              <div key={friend._id}>
+                <ChatOnline
+                  name={friend.username}
+                  friendImg={friend.avatarURL}
+                />
+              </div>
+            ))}
           </ChatOnlineWrapper>
         </ChatOnlineContainer>
       </MessengerContainer>

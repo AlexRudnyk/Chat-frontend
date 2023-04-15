@@ -7,16 +7,16 @@ import {
   ChatOnlineName,
 } from './ChatOnline.styled';
 
-export const ChatOnline = () => {
+export const ChatOnline = ({ name, friendImg }) => {
   return (
     <>
       <ChatOnlineWrapper>
         <ChatOnlineFriend>
           <ChatOnlineImgContainer>
-            <ChatOnlineImg src="" alt="" />
+            <ChatOnlineImg src={friendImg} alt="avatar" />
             <ChatOnlineBedge></ChatOnlineBedge>
           </ChatOnlineImgContainer>
-          <ChatOnlineName>John Doe</ChatOnlineName>
+          <ChatOnlineName>{name}</ChatOnlineName>
         </ChatOnlineFriend>
       </ChatOnlineWrapper>
     </>
