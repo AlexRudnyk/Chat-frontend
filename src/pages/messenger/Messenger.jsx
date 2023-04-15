@@ -121,15 +121,13 @@ export const Messenger = () => {
     scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  // console.log('FRIENDS:', friends);
-
   return (
     <>
       <MessengerContainer>
         <ChatMenu>
           <ChatMenuWrapper>
             <ChatMenuInput type="text" placeholder="Search for friends" />
-            {conversations.map(conversation => (
+            {conversations?.map(conversation => (
               <div
                 onClick={() => setCurrentChat(conversation)}
                 key={conversation._id}
@@ -144,7 +142,7 @@ export const Messenger = () => {
             {currentChat ? (
               <>
                 <ChatBoxTop>
-                  {messages.map(message => (
+                  {messages?.map(message => (
                     <div key={message._id} ref={scrollRef}>
                       <Message
                         message={message}
@@ -177,12 +175,9 @@ export const Messenger = () => {
         </ChatBox>
         <ChatOnlineContainer>
           <ChatOnlineWrapper>
-            {friends.map(friend => (
+            {friends?.map(friend => (
               <div key={friend._id}>
-                <ChatOnline
-                  name={friend.username}
-                  friendImg={friend.avatarURL}
-                />
+                <ChatOnline friend={friend} />
               </div>
             ))}
           </ChatOnlineWrapper>

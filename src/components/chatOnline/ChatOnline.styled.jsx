@@ -44,4 +44,14 @@ export const ChatOnlineBedge = styled.div`
   border-radius: 50%;
 `;
 
+export const ChatOfflineBedge = styled.div`
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 10px;
+  height: 10px;
+  background-color: #f40707;
+  border-radius: 50%;
+`;
+
 export const ChatOnlineName = styled.span``;
