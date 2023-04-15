@@ -113,7 +113,7 @@ export const LoginPage = () => {
                 </Link>
               </Grid>
               <Grid item>
-                <LinkRouter to="/registration">
+                <LinkRouter to="/signup">
                   {"Don't have an account? Sign Up"}
                 </LinkRouter>
               </Grid>
