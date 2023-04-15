@@ -5,8 +5,11 @@ export const ChatOnlineWrapper = styled.div`
   align-items: center;
   padding: 10px;
   cursor: pointer;
-  margin-top: 20px;
   border-radius: 10px;
+
+  &:not(last-child) {
+    margin-bottom: 20px;
+  }
 
   &:hover {
     background-color: #e9e5e5;
@@ -17,13 +20,10 @@ export const ChatOnlineFriend = styled.div`
   display: flex;
   align-items: center;
   font-weight: 500;
-  /* cursor: pointer; */
-  /* margin-top: 10px; */
 `;
 
 export const ChatOnlineImgContainer = styled.div`
   position: relative;
-  /* border: 1px solid white; */
   margin-right: 20px;
 `;
 
