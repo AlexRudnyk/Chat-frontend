@@ -60,6 +60,11 @@ export const ChatBoxInput = styled.textarea`
   width: 80%;
   height: 90px;
   padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #edeaea;
+  rows: 3;
+  resize: none;
 `;
 
 export const ChatBoxBtn = styled.button`
