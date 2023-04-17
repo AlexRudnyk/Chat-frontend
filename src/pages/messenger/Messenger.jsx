@@ -20,7 +20,6 @@ import { useAuth } from 'hooks/useAuth';
 import axios from 'axios';
 import { io } from 'socket.io-client';
 import { ChatOnline } from 'components/chatOnline';
-// import { nanoid } from 'nanoid';
 
 export const Messenger = () => {
   const [conversations, setConversations] = useState([]);
