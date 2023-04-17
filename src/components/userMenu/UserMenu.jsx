@@ -15,7 +15,7 @@ export const UserMenu = () => {
   return (
     <Container>
       <UserMenuText>
-        Welcome, <strong>{user.username}</strong>
+        Welcome, <strong>{user.username || user.email}</strong>
       </UserMenuText>
       <UserMenuImg src={user.avatarURL} alt="avatar" />
       <Button type="button" onClick={handleLogout}>

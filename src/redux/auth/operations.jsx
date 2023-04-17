@@ -3,6 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'http://localhost:3030/api';
+// axios.defaults.baseURL = 'https://chat-backend-sooty.vercel.app/api';
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
