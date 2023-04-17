@@ -117,6 +117,19 @@ export const Messenger = () => {
     }
   };
 
+  const handleOnFriendClick = async friendId => {
+    const newConversation = {
+      senderId: user.id,
+      receiverId: friendId,
+    };
+    try {
+      const { data } = await axios.post('/conversations', newConversation);
+      setConversations([...conversations, data]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
@@ -176,7 +189,10 @@ export const Messenger = () => {
         <ChatOnlineContainer>
           <ChatOnlineWrapper>
             {friends.map(friend => (
-              <div key={friend._id}>
+              <div
+                key={friend._id}
+                onClick={() => handleOnFriendClick(friend._id)}
+              >
                 <ChatOnline friend={friend} />
               </div>
             ))}
