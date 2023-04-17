@@ -10,6 +10,14 @@ export const UserMenuText = styled.p`
   font-size: 18px;
 `;
 
+export const UserMenuImg = styled.img`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+`;
+
 export const Button = styled.button`
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   font-weight: 500;

@@ -20,6 +20,7 @@ import { useAuth } from 'hooks/useAuth';
 import axios from 'axios';
 import { io } from 'socket.io-client';
 import { ChatOnline } from 'components/chatOnline';
+// import { nanoid } from 'nanoid';
 
 export const Messenger = () => {
   const [conversations, setConversations] = useState([]);
@@ -127,7 +128,7 @@ export const Messenger = () => {
         <ChatMenu>
           <ChatMenuWrapper>
             <ChatMenuInput type="text" placeholder="Search for friends" />
-            {conversations?.map(conversation => (
+            {conversations.map(conversation => (
               <div
                 onClick={() => setCurrentChat(conversation)}
                 key={conversation._id}
@@ -142,7 +143,7 @@ export const Messenger = () => {
             {currentChat ? (
               <>
                 <ChatBoxTop>
-                  {messages?.map(message => (
+                  {messages.map(message => (
                     <div key={message._id} ref={scrollRef}>
                       <Message
                         message={message}
@@ -175,7 +176,7 @@ export const Messenger = () => {
         </ChatBox>
         <ChatOnlineContainer>
           <ChatOnlineWrapper>
-            {friends?.map(friend => (
+            {friends.map(friend => (
               <div key={friend._id}>
                 <ChatOnline friend={friend} />
               </div>
