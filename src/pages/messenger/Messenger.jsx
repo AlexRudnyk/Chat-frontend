@@ -122,11 +122,14 @@ export const Messenger = () => {
       senderId: user.id,
       receiverId: friendId,
     };
-    try {
-      const { data } = await axios.post('/conversations', newConversation);
-      setConversations([...conversations, data]);
-    } catch (error) {
-      console.log(error);
+    const res = conversations.filter(item => item.members.includes(friendId));
+    if (res.length === 0) {
+      try {
+        const { data } = await axios.post('/conversations', newConversation);
+        setConversations([...conversations, data]);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
